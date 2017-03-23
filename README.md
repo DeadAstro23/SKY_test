@@ -12,5 +12,5 @@ Checkout this repo, install dependencies, then start the local server:
 To run the test do:
 
 ```
-	> npm start
+	> npm test
 ```
