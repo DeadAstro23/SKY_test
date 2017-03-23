@@ -3,19 +3,14 @@ import Header   from './Header/Header.jsx';
 import MainBody from './MainBody/MainBody.jsx';
 import Footer   from './Footer/Footer.jsx';
 
-import {hasUserUniqueID} from '../utils/utils';
-import geoLocation from '../utils/geoAPI.js';
+import { hasUserUniqueID } from '../utils/utils';
 
 export default class App extends Component {
-    componentDidMount() {
+    componentDidMount () {
         hasUserUniqueID();
     }
 
-    render() {
-        geoLocation.then((result) =>
-            console.log(result)
-        );
-
+    render () {
         return (
             <div>
                 <Header />

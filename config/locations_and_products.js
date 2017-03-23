@@ -25,7 +25,18 @@ const locations_and_products = {
           {value: 'sky_news', label: 'Sky News'},
           {value: 'sky_sports', label: 'Sky Sports News'},
       ],
-  }
+  },
+	"Default" : {
+		sports: [
+			{value: 'arsenal_tv', label: 'Arsenal TV'},
+			{value: 'chelsea_tv', label: 'Chelsea TV'},
+			{value: 'liverpool_tv', label: 'Liverpool TV'}
+		],
+		news: [
+			{value: 'sky_news', label: 'Sky News'},
+			{value: 'sky_sports', label: 'Sky Sports News'},
+		],
+	}
 };
 
 export default locations_and_products;
