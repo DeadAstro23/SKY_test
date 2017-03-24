@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import CheckBoxList from '../CheckBoxList/CheckBoxList';
+import CheckBoxList from '../CheckBoxList/CheckBoxList.jsx';
 import data from '../../../config/locations_and_products';
 import {toggleItem} from "../../actions/actions";
 import geoLocation from '../../utils/geoAPI.js';
-import _ from 'lodash'
+import {Link} from 'react-router-dom'
 
 import './MainBody.less'
 import {connect} from "react-redux";
@@ -91,9 +91,12 @@ class MainBody extends Component {
 							</li>
 						))}
 					</ul>
-					<button className="mainBody__cart__button">
-						Checkout
-					</button>
+					<Link to="/checkout">
+						<button className="mainBody__cart__button">
+							Checkout
+						</button>
+					</Link>
+
 				</div>
 			</section>
 		)
@@ -118,4 +121,4 @@ const MainBodyDecorated = connect(
     mapDispatchToProps
 )(MainBody);
 
-export default MainBodyDecorated
+export default MainBodyDecorated;

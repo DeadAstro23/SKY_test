@@ -1,6 +1,6 @@
 module.exports = {
     entry: [
-        './src/actions.js'
+        './src/index.js'
     ],
 
     output: {
@@ -9,8 +9,10 @@ module.exports = {
         filename: 'bundle.js'
     },
 
-    devServer : {
-        inline: true
+    devServer: {
+        historyApiFallback: true,
+        contentBase: './',
+        hot: true
     },
 
     module: {

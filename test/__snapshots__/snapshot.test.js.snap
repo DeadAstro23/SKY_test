@@ -1,0 +1,26 @@
+exports[`test CheckBoxList renders correctly 1`] = `<div />`;
+
+exports[`test Footer renders correctly 1`] = `
+<div
+  className="footer">
+  <img
+    alt="sky_logo"
+    src="https://dm8eklel4s62k.cloudfront.net/images/sky-logo-2016.svg"
+    width="72" />
+  <span
+    className="footer__copyright">
+    © 2017 Sky UK
+  </span>
+</div>
+`;
+
+exports[`test Header renders correctly 1`] = `
+<div
+  className="header">
+  <img
+    alt="sky_logo"
+    className="header__logo"
+    src="https://dm8eklel4s62k.cloudfront.net/images/sky-logo-2016.svg"
+    width="100" />
+</div>
+`;
