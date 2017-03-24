@@ -9,6 +9,8 @@ Checkout this repo, install dependencies, then start the local server:
 	> npm start
 ```
 
+After all of this go to http://localhost:8080
+
 To run the test do:
 
 ```
