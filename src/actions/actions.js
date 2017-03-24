@@ -1,6 +1,6 @@
-export function addProduct(product) {
+export function toggleItem(item) {
 	return {
-		type: 'ADD_PRODUCT',
-		product
+		type: 'TOGGLE_ITEM',
+		item
 	}
 }

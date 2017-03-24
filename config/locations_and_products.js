@@ -1,40 +1,40 @@
 const locations_and_products = {
   "Arsenal" : {
     sports:  [
-          {value: 'arsenal_tv', label: 'Arsenal TV'},
+          {value: 'Arsenal TV', label: 'Arsenal TV'},
       ],
       news: [
-          {value: 'sky_news', label: 'Sky News'},
-          {value: 'sky_sports', label: 'Sky Sports News'},
+          {value: 'Sky News', label: 'Sky News'},
+          {value: 'Sky Sports News', label: 'Sky Sports News'},
       ],
   },
   "Chelsea" : {
       sports: [
-          {value: 'chelsea_tv', label: 'Chelsea TV'},
+          {value: 'Chelsea TV', label: 'Chelsea TV'},
       ],
       news: [
-          {value: 'sky_news', label: 'Sky News'},
-          {value: 'sky_sports', label: 'Sky Sports News'},
+          {value: 'Sky News', label: 'Sky News'},
+          {value: 'Sky Sports News', label: 'Sky Sports News'},
       ],
   },
   "Liverpool" : {
       sports: [
-          {value: 'liverpool_tv', label: 'Liverpool TV'}
+          {value: 'Chelsea TV', label: 'Chelsea TV'},
       ],
       news: [
-          {value: 'sky_news', label: 'Sky News'},
-          {value: 'sky_sports', label: 'Sky Sports News'},
+          {value: 'Sky News', label: 'Sky News'},
+          {value: 'Sky Sports News', label: 'Sky Sports News'},
       ],
   },
 	"Default" : {
 		sports: [
-			{value: 'arsenal_tv', label: 'Arsenal TV'},
-			{value: 'chelsea_tv', label: 'Chelsea TV'},
-			{value: 'liverpool_tv', label: 'Liverpool TV'}
+			{value: 'Arsenal TV', label: 'Arsenal TV'},
+			{value: 'Chelsea TV', label: 'Chelsea TV'},
+			{value: 'Liverpool TV', label: 'Liverpool TV'}
 		],
 		news: [
-			{value: 'sky_news', label: 'Sky News'},
-			{value: 'sky_sports', label: 'Sky Sports News'},
+            {value: 'Sky News', label: 'Sky News'},
+            {value: 'Sky Sports News', label: 'Sky Sports News'},
 		],
 	}
 };

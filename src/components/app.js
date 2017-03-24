@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Header   from './Header/Header.jsx';
-import MainBody from './MainBody/MainBody.jsx';
+import MainBodyDecorated from './MainBody/MainBody.jsx';
 import Footer   from './Footer/Footer.jsx';
 
 import { hasUserUniqueID } from '../utils/utils';
@@ -15,7 +15,7 @@ export default class App extends Component {
             <div>
                 <Header />
                 <hr />
-                <MainBody />
+                <MainBodyDecorated />
                 <hr />
                 <Footer />
             </div>

@@ -1,78 +1,74 @@
 import React, {Component} from 'react';
-import CheckBoxList from 'react-checkbox-list';
+import CheckBoxList from '../CheckBoxList/CheckBoxList';
 import data from '../../../config/locations_and_products';
+import {toggleItem} from "../../actions/actions";
 import geoLocation from '../../utils/geoAPI.js';
+import _ from 'lodash'
 
 import './MainBody.less'
+import {connect} from "react-redux";
+
 
 class CheckboxListDecorated extends Component {
 	render() {
 		return (
 			<div className="checkboxList">
 				<span className="checkboxList__title">
-						{this.props.title}
+					{this.props.title}
 				</span>
 				<CheckBoxList
 					defaultData={this.props.type}
-					onChange={this.props.handleChange}
+					onClick={this.props.onClick}
 				/>
 			</div>
 		)
 	}
 }
 
-export default class MainBody extends Component {
+class MainBody extends Component {
 	constructor() {
 		super();
-
-		this.cart = [];
-
 		this.state = {
 			city: 'Default',
-			cart: []
 		}
 	}
 
 	componentDidMount() {
 		geoLocation.then((result) => {
-			if (result.city == '') {
+			if (result.city !== '') {
 				this.setState({
-					city: 'Arsenal',
+					city: result.city,
 				})
 			}
 		})
 	}
 
-	addItemToCart = (item) => {
-		console.log(item);
-		this.cart.push(item);
-		console.log(this.cart)
-		this.setState({
-			cart: this.cart
-		})
-		console.log(this.state)
-	};
-
 	render() {
-		let detectedCity;
+		let detectedCityData;
 		let listOfPrograms = [];
+		let cityByIP = this.state.city;
 
-		for (let prop in data) {
+		for (let city in data) {
 			//region detection
-			if (prop == "Arsenal") {
-				detectedCity = data[prop];
+			if (city == cityByIP) {
+				detectedCityData = data[city];
+			}
+			else {
+                detectedCityData = data.Default;
 			}
 		}
 
 		//creating all the lists of programs
-		for (let category in detectedCity) {
+		for (let category in detectedCityData) {
 			listOfPrograms.push(
 				<CheckboxListDecorated
-					key={category}
-					type={detectedCity[category]}
-					title={category}
-					handleChange={
-						(item) => this.addItemToCart(item)
+					key		={category}
+					type	={detectedCityData[category]}
+					title	={category}
+					onClick	={
+						(event) => {
+                            this.props.onItemClick(event.target.value)
+                        }
 					}
 				/>
 			)
@@ -88,9 +84,38 @@ export default class MainBody extends Component {
 					<span className="mainBody__cart__title">
 						Cart
 					</span>
-					{this.state.cart}
+					<ul>
+						{this.props.itemsInCart.map((itemObj) => (
+							<li key={itemObj.item}>
+								{itemObj.item}
+							</li>
+						))}
+					</ul>
+					<button className="mainBody__cart__button">
+						Checkout
+					</button>
 				</div>
 			</section>
 		)
 	}
+}
+
+const mapStateToProps = (state) => {
+    return {
+		itemsInCart: state.product
+    }
 };
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onItemClick: (item) => {
+            dispatch(toggleItem(item))
+        }
+    }
+};
+
+const MainBodyDecorated = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MainBody);
+
+export default MainBodyDecorated
