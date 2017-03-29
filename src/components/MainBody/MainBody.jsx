@@ -1,31 +1,14 @@
-import React, {Component} from 'react';
-import CheckBoxList from '../CheckBoxList/CheckBoxList.jsx';
-import data from '../../../config/locations_and_products';
-import {toggleItem} from "../../actions/actions";
-import geoLocation from '../../utils/geoAPI.js';
-import {Link} from 'react-router-dom'
+import React 						from 'react';
+import data 						from '../../../config/locations_and_products';
+import { CheckboxListDecorated } 	from '../CheckBoxList/CheckBoxList.jsx';
+import {toggleItem} 				from "../../actions/actions";
+import geoLocation 					from '../../utils/geoAPI.js';
+import {Link} 						from 'react-router-dom'
+import {connect} 					from "react-redux";
 
 import './MainBody.less'
-import {connect} from "react-redux";
 
-
-class CheckboxListDecorated extends Component {
-	render() {
-		return (
-			<div className="checkboxList">
-				<span className="checkboxList__title">
-					{this.props.title}
-				</span>
-				<CheckBoxList
-					defaultData={this.props.type}
-					onClick={this.props.onClick}
-				/>
-			</div>
-		)
-	}
-}
-
-class MainBody extends Component {
+class MainBody extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -36,47 +19,57 @@ class MainBody extends Component {
 	componentDidMount() {
 		geoLocation.then((result) => {
 			if (result.city !== '') {
-				this.setState({
+				this.setState ({
 					city: result.city,
 				})
 			}
 		})
 	}
 
-	render() {
-		let detectedCityData;
-		let listOfPrograms = [];
-		let cityByIP = this.state.city;
+	detectCityData () {
+        let detectedCityData;
+        let city;
+        let cityByIP = this.state.city;
 
-		for (let city in data) {
-			//region detection
-			if (city == cityByIP) {
-				detectedCityData = data[city];
-			}
-			else {
-                detectedCityData = data.Default;
-			}
-		}
+        //region detection
+        for (city in data) {
+            if (city == cityByIP) {
+                return detectedCityData = data[city];
+            }
+            else {
+                return detectedCityData = data.Default;
+            }
+        }
+	}
 
-		//creating all the lists of programs
-		for (let category in detectedCityData) {
-			listOfPrograms.push(
+	prepareListOfPrograms () {
+        let listOfPrograms = [];
+        const detectedCityData = this.detectCityData();
+
+        for (let category in detectedCityData) {
+            listOfPrograms.push(
 				<CheckboxListDecorated
 					key		={category}
 					type	={detectedCityData[category]}
 					title	={category}
 					onClick	={
-						(event) => {
+                        (event) => {
                             this.props.onItemClick(event.target.value)
                         }
-					}
+                    }
 				/>
-			)
-		}
+            )
+        }
+
+        return listOfPrograms;
+	}
+
+	render() {
+		const preparedListOfPrograms = this.prepareListOfPrograms();
 
 		return (
 			<section className="mainBody">
-				{listOfPrograms}
+				{preparedListOfPrograms}
 				<div
 					ref="cart"
 					className="mainBody__cart"
@@ -96,7 +89,6 @@ class MainBody extends Component {
 							Checkout
 						</button>
 					</Link>
-
 				</div>
 			</section>
 		)

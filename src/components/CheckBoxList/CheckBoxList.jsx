@@ -1,7 +1,7 @@
-'use strict';
-var React = require('react');
+import React from 'react';
 
-module.exports = React.createClass({
+//forked module from GitHub
+const CheckBoxList = React.createClass({
     displayName: 'CheckBoxList',
 
     propTypes: {
@@ -72,3 +72,19 @@ module.exports = React.createClass({
         );
     }
 });
+
+export class CheckboxListDecorated extends React.Component {
+    render() {
+        return (
+            <div className="checkboxList">
+				<span className="checkboxList__title">
+					{this.props.title}
+				</span>
+                <CheckBoxList
+                    defaultData={this.props.type}
+                    onClick={this.props.onClick}
+                />
+            </div>
+        )
+    }
+}
